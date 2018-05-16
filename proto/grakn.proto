@@ -143,6 +143,28 @@ message Answer {
     map<string, Concept> answer = 1;
 }
 
+message ComputeAnswer {
+    oneof computeAnswer {
+        Number number = 1;
+        Paths paths = 2;
+    }
+}
+
+message Number {
+    oneof number {
+        int64 long = 1;
+        double double = 2;
+    }
+}
+
+message Paths {
+    repeated Path path = 1;
+}
+
+message Path {
+    repeated ConceptId conceptId= 1;
+}
+
 enum TxType {
     Read = 0;
     Write = 1;
