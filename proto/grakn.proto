@@ -100,7 +100,7 @@ message Infer {
 
 message TxResponse {
     oneof response {
-        QueryResult queryResult = 1;
+        Answer answer = 1;
         Done done = 2;
         ConceptResponse conceptResponse = 3;
         IteratorId iteratorId = 4;
@@ -110,13 +110,14 @@ message TxResponse {
     }
 }
 
-message QueryResult {
-    oneof queryResult {
-        Answer answer = 1;
-        // This is used to represent `aggregate` and `compute` query results.
+message Answer {
+    oneof answer {
+        QueryAnswer queryAnswer = 1;
+        ComputeAnswer computeAnswer = 2;
+        // This is used to represent `aggregate` query results.
         // These come in many different formats, so they are just returned
         // as JSON strings.
-        string otherResult = 2;
+        string otherResult = 3;
     }
 }
 
@@ -139,7 +140,7 @@ message Done {}
     }
     ```
 */
-message Answer {
+message QueryAnswer {
     map<string, Concept> answer = 1;
 }
 
