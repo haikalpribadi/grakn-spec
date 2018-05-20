@@ -141,29 +141,37 @@ message Done {}
     ```
 */
 message QueryAnswer {
-    map<string, Concept> answer = 1;
+    map<string, Concept> queryAnswer = 1;
 }
 
 message ComputeAnswer {
     oneof computeAnswer {
         Number number = 1;
         Paths paths = 2;
+        CentralityCounts centralityCounts = 3;
+        ClusterMembers clusterMembers = 4;
+        ClusterCounts clusterCounts = 5;
     }
 }
 
 message Number {
-    oneof number {
-        int64 long = 1;
-        double double = 2;
-    }
+    string number = 1;
 }
 
 message Paths {
-    repeated Path path = 1;
+    repeated ConceptIds paths = 1;
 }
 
-message Path {
-    repeated ConceptId conceptId= 1;
+message CentralityCounts {
+    map<int64, ConceptIds> centralityCounts = 1;
+}
+
+message ClusterMembers {
+    repeated ConceptIds clusters = 1;
+}
+
+message ClusterCounts {
+    repeated int64 counts = 1;
 }
 
 enum TxType {

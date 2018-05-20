@@ -168,6 +168,10 @@ message Concepts {
     repeated Concept concept = 1;
 }
 
+message ConceptIds {
+    repeated ConceptId conceptId= 1;
+}
+
 message OptionalConcept {
     oneof value {
         Concept present = 1;
